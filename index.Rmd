@@ -1,0 +1,54 @@
+---
+title: "QSURE R Training 2022: Lesson 1"
+author: "Karissa Whiting & Mike Curry"
+date: "June 7th, 2022"
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css, custom.css]
+    lib_dir: libs
+    seal: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+
+set.seed(78987)
+library(xaringanthemer)
+library(gtsummary)
+
+style_mono_accent(
+  base_color = "#007CBA", 
+  code_inline_color = "#FF5733",
+  code_font_size = "0.7em"
+)
+
+#xaringan::inf_mr() 
+options(htmltools.dir.version = FALSE) 
+
+```
+
+```{r xaringanExtra-freezeframe, echo=FALSE}
+xaringanExtra::use_freezeframe()
+```
+
+
+class: inverse, center, title-slide, middle
+# QSURE R Training 2022
+
+### Karissa Whiting & Mike Curry
+
+<p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
+
+---
+```{r child='lesson-1.Rmd'}
+```
+
+---
+
+```{r child='lesson-2.Rmd'}
+```
