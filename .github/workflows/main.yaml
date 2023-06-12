@@ -1,33 +1,20 @@
-name: Build Slides
-
+name: Render and deploy Quarto files
 on:
   push:
-    branches: [main, master]
   pull_request:
-    branches: [main, master]
 
 jobs:
-  build:
+  quarto-render-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@main
-        with:
-          persist-credentials: false
-          submodules: true  # TODO remove this if not using submodules in Hexo
+      - uses: actions/checkout@v2
 
-      - name: Install 🔧
-        run: yarn install
+      - name: "Install Quarto and render"
+        uses: pommevilla/quarto-render@main
 
-      - name: Build 🏗️
-        run: |
-          yarn clean
-          yarn build
-
-      - name: Deploy to GH Pages 🚀
+      - name: "Deploy to gh-pages"
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: public
-          
+          publish_dir: ./docs
