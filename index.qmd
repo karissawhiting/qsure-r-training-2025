@@ -8,7 +8,7 @@ format:
 execute:
   echo: true 
   output: asis
-  cache: true
+  cache: false
 editor: source
 ---
 

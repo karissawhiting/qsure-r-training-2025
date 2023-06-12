@@ -1,19 +1,13 @@
 # QSURE R Training Seminars
 
-**Instructors:** [Karissa Whiting](https://github.com/karissawhiting), [Mike Curry](https://github.com/michaelcurry1123)
+**Instructors:** [Karissa Whiting]
 
 # Training Agenda
 
-- **Lesson 1** – 6/7/2022
-    - R Basics (Quick Review)
-    - Project Setup & Reproducibility 
-    - Guided Example - [Materials available here](https://github.com/karissawhiting/qsure-case-study-2022)
-        - Data Cleaning
-        - Exploring your Data
-- **Lesson 2** - 6/9/2022
-    - Guided Example (Continuation) - [Materials available here](https://github.com/karissawhiting/qsure-case-study-2022)
-        - Analyzing/Modeling the Data
-        - Reporting Your Results
-- **Lesson 3** - TBD
-    - Github 
-    - Intro to Package Development
+- **Lesson 1**: R Basics
+
+- **Lesson 1**: Computational Reproducibility and Diabetes Case Study
+
+Slides for both lessons available here: http://www.karissawhiting.com/qsure-r-training-2023/#/qsure-r-training-2023-r-basics
+
+Link to Diabetes Case Study: https://github.com/karissawhiting/qsure-case-study 

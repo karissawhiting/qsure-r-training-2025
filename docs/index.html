@@ -467,21 +467,17 @@
 <ul>
 <li><code>&lt;-</code> is the assignment operator (<code>=</code> also works)</li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-2_0ddd962f21944bdcbbb5b73f8a79232a">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb1-2"><a href="#cb1-2"></a>v1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 1 2 3</p>
-</div>
 <ul>
 <li>The <code>%&gt;%</code> (pipe) from the magrittr package is a useful way to link functions together to make your code more succinct and easier to read</li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-3_a1802925fa7cbbc7a12c0f65ed4c32f1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a>mtcars <span class="sc">%&gt;%</span> </span>
 <span id="cb2-4"><a href="#cb2-4"></a>    <span class="fu">select</span>(mpg) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-5"><a href="#cb2-5"></a>    <span class="fu">filter</span>(mpg <span class="sc">==</span> <span class="fu">max</span>(mpg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <ul>
 <li><p><code>?</code> is your friend if you want to look at documentation! (e.g.&nbsp;type <code>?mean()</code> in the console)</p></li>
 <li><p>R is case sensitive, bE cArEfUl!</p></li>
@@ -507,19 +503,13 @@
 <li><p>Since columns of a data.frame must be of the same type, some data may be coerced in unexpected ways when reading in a csv or excel file.</p></li>
 <li><p>character is often the default for mixed data types</p></li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-4_b532d7c841abf350e4789230e0aa88e3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple"</span>, <span class="dv">3</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="fu">str</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>chr [1:2] “apple” “3”</p>
-</div>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-5_2ffca80c17b88e87e15c0ecd614735b8">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="st">"twenty"</span>) </span>
 <span id="cb4-2"><a href="#cb4-2"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] “3” “2” “twenty”</p>
-</div>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-6_cb39036dbc468475d0921cc761cfac3e">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#sum(y)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 
 <section id="r-basics-data-structures-and-basic-syntax-1" class="title-slide slide level1 center">
@@ -551,14 +541,12 @@
 <ul>
 <li>only 1 data type allowed</li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-7_86b39cdb5e4ff6540882f13c57177df7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># character</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="fu">c</span>(<span class="st">"apple"</span>, <span class="st">"orange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] “apple” “orange”</p>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># numeric</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</p>
-</div>
 </div>
 </div>
 </section>
@@ -573,7 +561,7 @@
 </ol>
 </div><div class="column" style="width:50%;">
 <p>2d, only 1 data type allowed</p>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-8_022dccb77ba873d45b8dd0674caf0a70">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>letters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="fu">matrix</span>(letters, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -599,7 +587,7 @@
 <ul>
 <li>any data type allowed</li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-9_d1e8b711235368c18212a696fac14f06">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"a"</span>, <span class="dv">2</span>, <span class="cn">TRUE</span>) </span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="fu">str</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -627,7 +615,7 @@
 <ul>
 <li>n-dimensions, of 1 data type</li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-10_81d895e7beb372a9f81dfda6a840d413">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Create two vectors of different lengths.</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>vector1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">9</span>,<span class="dv">3</span>)</span>
 <span id="cb12-3"><a href="#cb12-3"></a>vector2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>)</span>
@@ -667,7 +655,6 @@
 </div><div class="column" style="width:50%;">
 <pre><code>- any data type is allowed, but each column has to have the same type
 - the most important for data analysts. Most similar to an excel spreadsheet/statistical data file</code></pre>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-11_bcb729dcf8da54cf40a19f380956aca9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">head</span>(iris, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="yysyqifuop" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
@@ -767,7 +754,6 @@ setosa
 </div>
 </div>
 </div>
-</div>
 </section>
 
 <section id="exploring-your-data-identify-data-types" class="title-slide slide level1 center">
@@ -780,17 +766,14 @@ setosa
 <li><code>View()</code> will show the whole dataframe</li>
 <li><code>table()</code> will summarise variables</li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-12_8ad45fdda19b0c264364ffee66c171c0">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">str</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>‘data.frame’: 150 obs. of 5 variables: $ Sepal.Length: num 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 … $ Sepal.Width : num 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 … $ Petal.Length: num 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 … $ Petal.Width : num 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 … $ Species : Factor w/ 3 levels “setosa”,“versicolor”,..: 1 1 1 1 1 1 1 1 1 1 …</p>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">nrow</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 150</p>
-</div>
 </section>
 
 <section id="exploring-your-data-identify-data-types-cont." class="title-slide slide level1 center">
 <h1>Exploring Your Data: Identify Data Types cont.</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-13_29df5cee84dce2affdde433a13bcdc9f">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">colnames</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] “Sepal.Length” “Sepal.Width” “Petal.Length” “Petal.Width” “Species”</p>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">class</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -854,13 +837,12 @@ Petal.Length
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">table</span>(iris<span class="sc">$</span>Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>setosa versicolor  virginica 
     50         50         50 </code></pre>
-</div>
 </section>
 
 <section id="intro-to-tidyverse" class="title-slide slide level1 center">
 <h1>Intro to tidyverse</h1>
 <p>The tidyverse package is a collection of R packages designed for data analysis, all of which share a similar design, grammar, and structure.</p>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-14_791f1db2bdcd55d2ce4f9d2917bd522e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># load it</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb23-3"><a href="#cb23-3"></a></span>
@@ -991,7 +973,6 @@ Petal.Length
 <li>Continuous outcome</li>
 <li>Specifying interactions</li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-15_ce1be20767319622ca73ed630885ab25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>mtcars<span class="sc">$</span>vs  <span class="ot">&lt;-</span> <span class="fu">as.character</span>(mtcars<span class="sc">$</span>vs)</span>
 <span id="cb25-2"><a href="#cb25-2"></a>mtcars<span class="sc">$</span>cyl   <span class="ot">&lt;-</span> <span class="fu">as.character</span>(mtcars<span class="sc">$</span>cyl)</span>
 <span id="cb25-3"><a href="#cb25-3"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> vs <span class="sc">*</span> cyl, <span class="at">data =</span> mtcars)</span>
@@ -1002,12 +983,11 @@ Petal.Length
 [5] “fitted.values” “assign” “qr” “df.residual”<br>
 [9] “contrasts” “xlevels” “call” “terms”<br>
 [13] “model”</p>
-</div>
 </section>
 
 <section id="example-cont." class="title-slide slide level1 center">
 <h1>Example cont.</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-16_76ea76163b49452bd2a9f53441732da9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">summary</span>(mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1038,33 +1018,29 @@ F-statistic: 18.82 on 4 and 27 DF,  p-value: 1.696e-07</code></pre>
 
 <section id="check-model-diagnositcs" class="title-slide slide level1 center">
 <h1>Check model diagnositcs</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-17_27d92e588657eaba0bfa8b3d327d25be">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb29-2"><a href="#cb29-2"></a><span class="co">#model diagnositics</span></span>
 <span id="cb29-3"><a href="#cb29-3"></a></span>
 <span id="cb29-4"><a href="#cb29-4"></a><span class="co">#multi colinearity</span></span>
 <span id="cb29-5"><a href="#cb29-5"></a><span class="co">#vifmod &lt;- car::vif(mod1) #will not work with interaction present</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Compute a cutoff point for Cook’s Distance, which is a measure of how influential a data point is in a regression analysis</p>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-18_b682fa7608d9839148e4c2dde883cd9a">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">#influencers </span></span>
 <span id="cb30-2"><a href="#cb30-2"></a>cutoff <span class="ot">&lt;-</span> <span class="dv">4</span><span class="sc">/</span>((<span class="fu">nrow</span>(mtcars)<span class="sc">-</span><span class="fu">length</span>(mod1<span class="sc">$</span>coefficients)<span class="sc">-</span><span class="dv">2</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>If the Cook’s Distance of a data point exceeds this cutoff, that data point might be considered unusually influential</p>
 </section>
 
 <section id="check-model-diagnositcs-1" class="title-slide slide level1 center">
 <h1>Check model diagnositcs</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-19_12335fe74d17b7e691859b9340457e49">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#many options for which! </span></span>
 <span id="cb31-2"><a href="#cb31-2"></a><span class="fu">plot</span>(mod1, <span class="at">which=</span><span class="dv">1</span>, <span class="at">cook.levels=</span>cutoff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
+</section>
 
 <section id="example-cont.-1" class="title-slide slide level1 center">
 <h1>Example cont.</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-20_579d12be4f2823abb3632b023bd0fafc">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">summary</span>(mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1103,7 +1079,6 @@ F-statistic: 18.82 on 4 and 27 DF,  p-value: 1.696e-07</code></pre>
 <li><code>broom</code> is a package that helps tidy model results into data.frames</li>
 <li>this helps with reporting and you can further format the data.frame and present with <code>gt</code></li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-21_de835b60d828cc411ec3c84a1b572ef2">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>moddf <span class="ot">&lt;-</span> broom<span class="sc">::</span><span class="fu">tidy</span>(mod1) <span class="sc">%&gt;%</span> <span class="co">#didn't load broom just called one function </span></span>
 <span id="cb34-2"><a href="#cb34-2"></a>          <span class="fu">mutate</span>(<span class="at">p.value =</span> <span class="fu">round</span>(p.value,<span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb34-3"><a href="#cb34-3"></a>          <span class="fu">select</span>(<span class="sc">-</span>std.error)</span>
@@ -1218,7 +1193,6 @@ NA
 
 </table>
 </div>
-</div>
 </section>
 
 <section id="gtsummary" class="title-slide slide level1 center">
@@ -1231,7 +1205,6 @@ NA
 
 <section id="gtsummary-1" class="title-slide slide level1 center">
 <h1>gtsummary</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-22_76bed74fb06f9346ae1457f2e17f58be">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">tbl_regression</span>(mod1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="kdlmshvvgp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
@@ -1391,12 +1364,10 @@ vs * cyl
 
 </table>
 </div>
-</div>
 </section>
 
 <section id="customizing-gtsummary" class="title-slide slide level1 center">
 <h1>Customizing gtsummary</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-23_5d66d715ae4656c68c85d11285caf807">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">library</span>(labelled)</span>
 <span id="cb36-2"><a href="#cb36-2"></a></span>
 <span id="cb36-3"><a href="#cb36-3"></a><span class="fu">var_label</span>(mtcars<span class="sc">$</span>cyl) <span class="ot">&lt;-</span> <span class="st">"Cylinder"</span></span>
@@ -1404,12 +1375,10 @@ vs * cyl
 <span id="cb36-5"><a href="#cb36-5"></a><span class="fu">tbl_regression</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb36-6"><a href="#cb36-6"></a>    <span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb36-7"><a href="#cb36-7"></a>    <span class="fu">modify_caption</span>(<span class="st">"New title for model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 
 <section id="customizing-gtsummary-1" class="title-slide slide level1 center">
 <h1>Customizing gtsummary</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-24_d1ade2cf80bf85092aeff5043d72d0f5">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>newmodsum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="zcahsulipp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
@@ -1572,7 +1541,6 @@ vs * Cylinder
 
 </table>
 </div>
-</div>
 </section>
 
 <section id="logistic-models" class="title-slide slide level1 center">
@@ -1581,17 +1549,14 @@ vs * Cylinder
 <li>binary outcome (0/1)</li>
 <li>R will model the ‘1’ as the event by default make sure your variable is coded correctly</li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-25_0b914cea610af2d5c664116e94d27b9d">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>mtcars<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mtcars<span class="sc">$</span>vs)</span>
 <span id="cb38-2"><a href="#cb38-2"></a>mtcars<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.character</span>(mtcars<span class="sc">$</span>am)</span>
 <span id="cb38-3"><a href="#cb38-3"></a></span>
 <span id="cb38-4"><a href="#cb38-4"></a>mod2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(vs <span class="sc">~</span> am , <span class="at">data =</span> mtcars, <span class="at">family =</span>  <span class="st">"binomial"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 
 <section id="summarize-logistic-model" class="title-slide slide level1 center">
 <h1>Summarize logistic model</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-26_32c4230f84d6fe6c61cfa83edb6d76d1">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">tbl_regression</span>(mod2, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb39-2"><a href="#cb39-2"></a>    <span class="fu">bold_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="prjewacniz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -1664,7 +1629,6 @@ am
 
 </table>
 </div>
-</div>
 </section>
 
 <section id="survival-analysis" class="title-slide slide level1 center">
@@ -1679,7 +1643,6 @@ am
 
 <section id="survival-analysis-1" class="title-slide slide level1 center">
 <h1>Survival analysis</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-27_05dfcfa689886042213f7e9025cf4a1b">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">library</span>(survival)</span>
 <span id="cb40-2"><a href="#cb40-2"></a></span>
 <span id="cb40-3"><a href="#cb40-3"></a>lung <span class="ot">&lt;-</span> lung <span class="sc">%&gt;%</span> </span>
@@ -1688,12 +1651,10 @@ am
 <span id="cb40-6"><a href="#cb40-6"></a></span>
 <span id="cb40-7"><a href="#cb40-7"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(time, status)<span class="sc">~</span>ph.ecog<span class="sc">+</span>sex,<span class="at">data =</span> lung)</span>
 <span id="cb40-8"><a href="#cb40-8"></a>mod4 <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span> sex,<span class="at">data =</span> lung)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 
 <section id="survival-analysis-2" class="title-slide slide level1 center">
 <h1>Survival analysis</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-28_83f5c5b48bfd1f949a4be5379d9f3fae">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">tbl_regression</span>(mod3, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="toqdxpvbtd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
@@ -1831,17 +1792,14 @@ sex
 
 </table>
 </div>
-</div>
 </section>
 
 <section id="survival-analysis-3" class="title-slide slide level1 center">
 <h1>Survival analysis</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-29_75389a2f620f0694d6e2a33096b1b01a">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>mod4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Call: survfit(formula = Surv(time, status) ~ sex, data = lung)</p>
 <pre><code>    n events median 0.95LCL 0.95UCL</code></pre>
 <p>sex=1 138 112 270 212 310 sex=2 90 53 426 348 550</p>
-</div>
 </section>
 
 <section id="survival-analysis-4" class="title-slide slide level1 center">
@@ -1849,7 +1807,7 @@ sex
 <ul>
 <li>test proportional hazards</li>
 </ul>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-30_23862b2d3128ed9e64b6f776f7022d55">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">cox.zph</span>(mod3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        chisq df     p
@@ -1966,10 +1924,8 @@ GLOBAL   7.83  4 0.098</code></pre>
 </ul></li>
 </ul>
 </div>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-32_15403ddde5ae02412fa473d17426b291">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">library</span>(faraway)</span>
 <span id="cb46-2"><a href="#cb46-2"></a>?diabetes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 
 <section id="project-setup-anatomy-of-a-project" class="title-slide slide level1 center">
@@ -2031,7 +1987,6 @@ GLOBAL   7.83  4 0.098</code></pre>
 
 <section id="bonus-slides-function-example" class="title-slide slide level1 center">
 <h1>Bonus Slides: Function Example</h1>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-33_05735f4983091b3875ad6f19c459aff6">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>add_one <span class="ot">&lt;-</span> <span class="cf">function</span>(number) {</span>
 <span id="cb47-2"><a href="#cb47-2"></a>  result <span class="ot">=</span> number <span class="sc">+</span> <span class="dv">1</span> </span>
 <span id="cb47-3"><a href="#cb47-3"></a>  <span class="fu">return</span>(result)</span>
@@ -2040,18 +1995,15 @@ GLOBAL   7.83  4 0.098</code></pre>
 <span id="cb47-6"><a href="#cb47-6"></a><span class="fu">add_one</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 8</p>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="co">#add_one("hai")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 
 <section id="bonus-slides-function-practice" class="title-slide slide level1 center">
 <h1>Bonus Slides: Function Practice</h1>
 <p>Write a function to calculate BMI given height (inchs) and weight (lbs)</p>
 <p>BMI = (weight * 703) / (height)^2</p>
-<div class="cell" data-hash="index_cache/revealjs/unnamed-chunk-34_b0603052687d1d1f01d26339b27a0252">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>calc_bmi <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb49-2"><a href="#cb49-2"></a>  ?????????????</span>
 <span id="cb49-3"><a href="#cb49-3"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
 <div class="footer footer-default">
 
