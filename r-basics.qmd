@@ -1,0 +1,757 @@
+---
+format: 
+  revealjs: 
+    theme:  [default, style.scss]
+    transition: fade
+    slide-number: false
+    pdf-separate-fragments: true
+execute:
+  echo: true 
+  output: asis
+  cache: true
+editor: source
+---
+
+# QSURE R Training 2023 <br> R Basics {background-color="#007CBA" style="text-align: center;"}
+
+
+Karissa Whiting
+
+June 7th, 2023
+
+
+<p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
+
+
+```{r}
+#| echo: false
+#| results: false
+#| cache: false
+#| 
+set.seed(20230515)
+ 
+knitr::opts_chunk$set(echo = TRUE, results = 'asis')
+
+library(tidyverse)
+library(gtsummary)
+#library(synapser)
+library(genieBPC)
+library(gt)
+library(gnomeR)
+
+# let's check if reg gt tables work now. if so, ditch this
+knit_print.gtsummary <- function(x, ...) {
+   gtsummary::as_gt(x) |>
+     gt::as_raw_html()
+}
+
+knit_print.gt_tbl <- function(x, ...) {
+  gt::as_raw_html(x)
+} 
+
+
+knit_print.data.frame <- function(x, ...) {
+  x %>% gt::gt() %>%
+    gt::as_raw_html()
+}
+
+knit_print.tbl_df <- function(x, ...) {
+    x %>% gt::gt() %>%
+    gt::as_raw_html()
+} 
+
+
+registerS3method("knit_print", "gtsummary", knit_print.gtsummary)
+registerS3method("knit_print", "gt_tbl", knit_print.gt_tbl)
+registerS3method("knit_print", "data.frame", knit_print.data.frame)
+registerS3method("knit_print", "tbl_df", knit_print.tbl_df)
+
+#devtools::install_github("MSKCC-Epi-Bio/gnomeR")
+# fill for font awesome icons
+fa_fill <- "#606060"
+
+```
+
+
+# R Workshop Goal
+
+
+Fill potential gaps in your R knowledge and help you get properly set up to conduct impactful and reproducible research during your time at MSK (and after!)
+
+
+- Short review on basic R vocab 
+- Skip dplyr basics but include some advanced dplyr/data cleaning 
+- Focus on project setup
+- Focus on coding statistical analyses
+- Optional 3rd session on R package making/Github
+
+
+
+
+# Training Agenda
+
+- **Lesson 1** – 6/7/2023
+    - R Basics (Quick Review)
+- **Lesson 2** - 6/8/2023
+    - Guided Example
+        - Project Setup & Reproducibility 
+        - Data Cleaning
+        - Analyzing/Modeling the Data
+        - Reporting Your Results
+- **Lesson 3** - TBD
+    - Github?
+    - Intro to Package Development?
+
+
+# Introductions
+
+1. Name, Preferred pronouns
+
+2. Have you used R before? If so, how long (< 1 year, 1-3 years, > 3 years)?
+
+3. Are you familiar with tidyverse?
+
+4. What are you working on (you may not know yet!) ?
+
+
+# R, Rstudio, Open source philosophy
+
+- **R** is an object-oriented **open-source** programming language used mostly for statistical computing and graphics
+
+- **Open source** means the original source code is freely available, and can be distributed and modified. Also, users can contribute to the usefulness by creating packages, which implement specialized functions for all kinds of uses (e.g. statistical methods, graphical capabilities, reporting tools). 
+Added Bonus: vibrant R community!
+
+- **RStudio** is an integrated development environment (IDE) for R. It includes a console, syntax-highlighting code editor that supports direct code execution, as well as tools for plotting, history, debugging and work space management.
+
+# 
+
+<center>
+<img src="images/r-cars.jpg" width="100%"/>
+</center>
+
+
+
+# R Basics: General Things
+
+- `<-` is the assignment operator (`=` also works)
+
+```{r }
+v1 <- c(1, 2, 3)
+v1
+```
+
+- The `%>%` (pipe) from the magrittr package is a useful way to link functions together to make your code more succinct and easier to read
+
+```{r }
+#| eval: false
+library(dplyr)
+
+mtcars %>% 
+    select(mpg) %>% 
+    filter(mpg == max(mpg))
+
+```
+
+- `?` is your friend if you want to look at documentation! (e.g. type `?mean()` in the console)
+
+- R is case sensitive, bE cArEfUl!
+
+
+
+# R Basics: Data Structures and Basic Syntax
+
+R basic data types: 
+
+* logical (`TRUE`)
+* integer (`1`)
+* numeric (a.k.a. double) (`1.2`)
+* character (`"Purple"`)
+* factor ("a")
+* complex (nobody ever uses these really)
+
+
+# R Basics: Beware Data Type Coercion
+
+- Since columns of a data.frame must be of the same type, some data may be coerced in unexpected ways when reading in a csv or excel file. 
+
+- character is often the default for mixed data types
+
+```{r }
+#| echo: true
+x <- c("apple", 3)
+str(x)
+
+```
+
+```{r }
+#| echo: true
+#| 
+y <- c(3, 2, "twenty") 
+y
+```
+
+```{r }
+#| echo: true
+#sum(y)
+
+```
+
+
+
+# R Basics: Data Structures and Basic Syntax
+
+R has 5 basic data structures: 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+1. vector
+2. matrix
+3. list
+4. array
+5. data.frame/tibble
+
+::: 
+
+
+::: {.column width="50%"}
+
+:::
+
+::::
+
+# R Basics: Data Structures and Basic Syntax
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+1. vector
+
+:::
+
+::: {.column width="50%"}
+
+- only 1 data type allowed
+
+```{r }
+
+# character
+c("apple", "orange")
+
+# numeric
+c(1:15)
+```
+
+:::
+
+:::
+
+# R Basics: Data Structures and Basic Syntax
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+1. vector
+2. **matrix**
+
+:::
+
+::: {.column width="50%"}
+
+
+2d, only 1 data type allowed
+
+```{r }
+#| results: markup
+#| 
+letters <- c("a","b","c","d", "e", "f")
+matrix(letters, nrow=2, ncol=3)
+```
+
+:::
+
+::::
+
+
+
+
+# R Basics: Data Structures and Basic Syntax
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+1. vector
+2. matrix
+3. **list**
+
+:::
+
+::: {.column width="50%"}
+
+
+- any data type allowed
+
+```{r }
+#| results: markup
+#| 
+my_list <- list("a", 2, TRUE) 
+str(my_list)
+```
+
+:::
+
+::::
+
+
+
+
+# R Basics: Data Structures and Basic Syntax
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+1. vector
+2. matrix
+3. list
+4. **array**
+
+:::
+
+
+::: {.column width="50%"}
+
+- n-dimensions, of 1 data type
+
+```{r }
+#| results: markup
+#| 
+# Create two vectors of different lengths.
+vector1 <- c(5,9,3)
+vector2 <- c(10,11,12,13,14,15)
+
+array(c(vector1,vector2),dim = c(3,3,2))
+```
+
+:::
+
+::::
+
+
+
+# R Basics: Data Structures and Basic Syntax
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+1. vector
+2. matrix
+3. list
+4. array
+5. **data.frame/tibble**
+
+:::
+
+
+::: {.column width="50%"}
+
+    - any data type is allowed, but each column has to have the same type
+    - the most important for data analysts. Most similar to an excel spreadsheet/statistical data file
+
+```{r }
+
+head(iris, 4)
+```
+
+:::
+
+::::
+
+
+
+# Exploring Your Data: Identify Data Types
+
+
+- `colnames()` - will give you the column names
+- `ncol()` and `nrow()` - will give you the total count of columns and rows respectively
+- `class()`, `str()`, `attributes()` will give you meta-information on the object 
+- `head()`, `tail()` show the top or bottom rows of your df
+- `View()` will show the whole dataframe 
+- `table()` will summarise variables
+
+```{r }
+str(iris)
+nrow(iris)
+```
+
+
+
+# Exploring Your Data: Identify Data Types cont.
+
+```{r }
+
+colnames(iris)
+
+class(iris)
+head(iris[,1:3], 3)
+table(iris$Species)
+
+```
+
+
+
+# Intro to tidyverse
+
+The tidyverse package is a collection of R packages designed for data analysis, all of which share a similar design, grammar, and structure.
+
+```{r }
+#| results: markup
+# load it
+library(tidyverse)
+
+# check out the cute logo
+tidyverse_logo()
+
+```
+
+
+# Intro to tidyverse
+
+- readr: data import/export
+- tibble: easier to work with data frames
+- dplyr: data manipulation
+- tidyr: data manipulation
+- ggplot2: graphics and visualization
+- purrr: functional programming toolkit, replaces the need for many loops
+- stringr: string manipulation
+- forcats: re-imagined factor data types
+
+There are several additional packages which are installed as part of the tidyverse, but are not loaded by default.
+
+
+
+# Intro to tidyverse
+
+Overall tidyverse helps with code readability and has shortcuts for some common data manipulation tasks
+
+tidyverse has been developed and significantly improved in the last few years, with a lot of ongoing work being done to further increase usability.
+
+
+# The R Analysis Workflow
+
+- Setup Your Project
+
+- Clean and Explore Data
+    - `tidyverse`
+    
+- Analyze it
+    - `stats`
+    - `survival`, `lme4`, `nlme`
+    - `ggplot2` 
+    
+- Report Your Findings
+    - R Markdown / quarto
+    - `gt` / `gtsummary`
+    
+- Iterate, Share, and Collaborate!
+    - `git`/ `github`
+
+# Clean and Explore Data
+
+The dplyr package is a data manipulation and cleaning package. A few of the key functions (verbs) in dplyr are:
+
+- select()
+- mutate()
+- filter()
+- arrange()
+- group_by()
+- summarize()
+
+All take a data frame as input, and return a data frame as output.
+
+**We will briefly review   during case study**
+
+
+# The R Analysis Workflow
+
+- Setup Your Project
+
+- Clean and Explore Data
+    - `tidyverse`
+    
+- Analyze it
+    - `stats`
+    - `survival`, `lme4`, `nlme`
+    - `ggplot2` 
+    
+- Report Your Findings
+    - R Markdown / quarto
+    - `gt` / `gtsummary`
+    
+- Iterate, Share, and Collaborate!
+    - `git`/ `github`
+
+
+# Model Statistical analyses 
+
+
+We will cover:
+
+- linear model
+
+- logistic model
+
+- survival analyses 
+
+
+# General modeling formula 
+
+- in general `~` is used to separate your outcome on the left hand side and your predictors on the right hand side
+- your outcome will always be on the left side of the `~`
+- only some univariate tests like `chisq.test()` do not use the `~` notation 
+- general  notation: model(outcome ~ covariates, data)
+
+- the `stats` package is already loaded in R which will make it easier to use common statistical tests
+
+
+# Example of linear model
+
+
+- Continuous outcome 
+- Specifying interactions 
+
+```{r }
+#| eval: true
+
+mtcars$vs  <- as.character(mtcars$vs)
+mtcars$cyl   <- as.character(mtcars$cyl)
+mod1 <- lm(mpg ~ vs * cyl, data = mtcars)
+class(mod1) # class of lm which is a list
+
+names(mod1)
+
+```
+
+
+# Example cont.
+
+```{r }
+#| results: markup
+#| 
+summary(mod1)
+
+```
+
+
+# Check model diagnositcs
+
+```{r }
+#| message: false
+
+library(car)
+#model diagnositics
+
+#multi colinearity
+#vifmod <- car::vif(mod1) #will not work with interaction present
+```
+
+Compute a cutoff point for Cook's Distance, which is a measure of how influential a data point is in a regression analysis
+
+```{r }
+
+#influencers 
+cutoff <- 4/((nrow(mtcars)-length(mod1$coefficients)-2)) 
+
+
+```
+
+If the Cook's Distance of a data point exceeds this cutoff, that data point might be considered unusually influential
+
+# Check model diagnositcs
+
+```{r }
+#many options for which! 
+plot(mod1, which=1, cook.levels=cutoff)
+
+```
+
+
+
+# Example cont.
+
+```{r }
+#| results: markup
+#| 
+summary(mod1)
+
+```
+
+- while it is nice to see the summary results, you wouldn't present them in this fashion
+
+
+
+# Example cont. 
+
+
+- `broom` and `gt`/`gtsummary` will help
+- `broom` is a package that helps tidy model results into data.frames
+- this helps with reporting and you can further format the data.frame and present with `gt`
+
+```{r }
+#| message: false
+
+moddf <- broom::tidy(mod1) %>% #didn't load broom just called one function 
+          mutate(p.value = round(p.value,3)) %>% 
+          select(-std.error)
+
+gt::gt(moddf)
+
+```
+
+
+
+# gtsummary
+
+- `gtsummary` makes it easier to report model and descriptive statistics (more on this in the example)
+- For more helpful examples: https://www.danieldsjoberg.com/gtsummary/index.html 
+
+
+# gtsummary
+
+```{r }
+tbl_regression(mod1)
+```
+
+
+
+# Customizing gtsummary
+
+```{r }
+
+library(labelled)
+
+var_label(mtcars$cyl) <- "Cylinder"
+newmodsum <- lm(mpg ~ vs * cyl, data = mtcars) %>% 
+tbl_regression() %>% 
+    bold_labels() %>% 
+    modify_caption("New title for model")
+
+
+```
+
+
+# Customizing gtsummary
+
+```{r }
+
+newmodsum
+
+```
+
+
+# Logistic models
+
+
+- binary outcome (0/1)
+- R will model the '1' as the event by default make sure your variable is coded correctly
+
+```{r }
+mtcars$vs <- as.numeric(mtcars$vs)
+mtcars$am <- as.character(mtcars$am)
+
+mod2 <- glm(vs ~ am , data = mtcars, family =  "binomial")
+
+
+
+```
+
+
+
+# Summarize logistic model
+
+```{r }
+
+tbl_regression(mod2, exponentiate = TRUE) %>% 
+    bold_labels()
+
+```
+
+
+
+# Survival analysis
+
+- Outcome is both time and an event (e.g death, progression)
+- Have to specify both in model  
+- Former MSK employee Emily Zabor put together great materials for survival analysis here: https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html
+
+
+
+# Survival analysis
+
+```{r }
+library(survival)
+
+lung <- lung %>% 
+        mutate(ph.ecog = as.character(ph.ecog),
+               sex = as.character(sex))
+
+mod3 <- coxph(Surv(time, status)~ph.ecog+sex,data = lung)
+mod4 <- survfit(Surv(time, status) ~ sex,data = lung)
+
+
+```
+
+
+
+# Survival analysis
+
+```{r }
+
+tbl_regression(mod3, exponentiate = TRUE)
+
+```
+
+
+# Survival analysis
+
+
+```{r }
+
+mod4
+
+```
+
+
+
+
+# Survival analysis
+
+- test proportional hazards
+
+```{r }
+#| results: markup
+#| 
+cox.zph(mod3)
+
+```
+
+
+# Tomorrow: Coding Exercise 
+
+- Case Study: Diabetes Risk Factors
+
+- Github Repo With Case Study: [https://github.com/karissawhiting/qsure-case-study](https://github.com/karissawhiting/qsure-case-study)
+
+- Check out script > `01_clean_data.R`
+
+# Thank You!
+
+
+
+

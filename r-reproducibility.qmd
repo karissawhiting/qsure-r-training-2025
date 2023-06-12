@@ -1,0 +1,273 @@
+---
+format: 
+  revealjs: 
+    theme:  [default, style.scss]
+    transition: fade
+    slide-number: false
+    pdf-separate-fragments: true
+execute:
+  echo: true 
+  output: asis
+  cache: true
+editor: source
+---
+
+# R Training 2023{background-color="#007CBA" style="text-align: center;"}
+
+[Computational Reproducibility]{.larger}
+
+
+Karissa Whiting
+
+June 8th, 2023
+
+
+<p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
+
+
+```{r}
+#| echo: false
+#| results: false
+#| cache: false
+#| 
+set.seed(20230515)
+ 
+knitr::opts_chunk$set(echo = TRUE, results = 'asis')
+
+library(tidyverse)
+library(gtsummary)
+#library(synapser)
+library(genieBPC)
+library(gt)
+library(gnomeR)
+
+# let's check if reg gt tables work now. if so, ditch this
+knit_print.gtsummary <- function(x, ...) {
+   gtsummary::as_gt(x) |>
+     gt::as_raw_html()
+}
+
+knit_print.gt_tbl <- function(x, ...) {
+  gt::as_raw_html(x)
+} 
+
+
+knit_print.data.frame <- function(x, ...) {
+  x %>% gt::gt() %>%
+    gt::as_raw_html()
+}
+
+knit_print.tbl_df <- function(x, ...) {
+    x %>% gt::gt() %>%
+    gt::as_raw_html()
+} 
+
+
+registerS3method("knit_print", "gtsummary", knit_print.gtsummary)
+registerS3method("knit_print", "gt_tbl", knit_print.gt_tbl)
+registerS3method("knit_print", "data.frame", knit_print.data.frame)
+registerS3method("knit_print", "tbl_df", knit_print.tbl_df)
+
+#devtools::install_github("MSKCC-Epi-Bio/gnomeR")
+# fill for font awesome icons
+fa_fill <- "#606060"
+
+```
+
+
+# Agenda
+
+- Introduction into Reproducibilty
+- Project Setup
+- Coding Exercise 
+
+
+# What is Reproducibility?
+
+::: incremental
+
+A data analysis is [reproducible]{.emphasized} if all the information (data, files, etc.) needed to compute results is available for someone else to re-do your entire analysis and get the same results. 
+
+- All data processing steps from `raw data` to `cleaned data` are available and documented
+
+- All analysis decisions made are documented and available in code
+
+- Results don't depend on your specific computational environment (e.g. no hard coded file paths, seeds set for stochastic computations)
+
+:::
+
+# Why is Reproducibility Important?
+
+::: incremental
+
+- Allows you to show evidence of your results
+
+- Encourages transparency about decisions made during analysis
+
+- Enables others to check and use/extend your methods and results
+
+- Enables FUTURE YOU to check and use/extend your methods and results
+
+
+
+
+***"You mostly collaborate with yourself, and me-from-two-months-ago never responds to email"***
+
+~ *Dr. Mark Holder, Computational Biologist*
+
+:::
+
+# How Do We Ensure Our Code is Reproducible?
+
+::: incremental
+
+- Have a clear project structure and defined workflow
+
+- **Comment and document your code**
+
+- Use reproducible reporting practice (e.g. Rmd, quarto, Jupyter notebook, inline text stats)
+
+- Avoid absolute file paths (e.g. `~/Users/Whiting/Projects...`)
+
+- Version control (document changes you make, or use git!)
+
+:::
+
+
+# Coding Exercise {background-color="#007CBA" style="text-align: left;"}
+
+[Case Study: Diabetes Risk Factors]{.larger}
+
+
+# Case Study - Modeling Diabetes Risk Factors
+
+- **Research Question:** Is waist to hip ratio a risk factor for diabetes?
+
+- Outcome: glycosolated hemoglobin level (> 7 is considered diabetic)
+
+:::{.smaller}
+
+- Available Variables of interest: 
+    - cholesterol level 
+    - stabilized glucose
+    - location of individual
+    - age
+    - gender
+    - height/weight
+    - body frame
+    - waist in inches
+    - hip in inches
+    
+:::
+
+```{r }
+library(faraway)
+?diabetes
+```
+
+
+
+# Project Setup: Anatomy of a Project
+
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+<p align="center"><img src="images/project-folders.png"width=100%></p>
+
+:::
+
+
+::: {.column width="60%"}
+
+- keep raw and processed data separate (`raw-data`, vs. `data`)
+
+- folder for `scripts` ordered or labelled descriptively
+- optionally can have `admin` for project notes, etc  and `outputs` for final reports and figures 
+
+- **README** - text file that introduces and explains a project (`usethis::use_readme_md()`)
+- **R Project (.Rproj file) ** - tells RStudio all your files belong to one project and sets working directory for entire project. 
+
+:::
+
+::::
+
+
+# Project Setup
+
+
+1. Create a new folder on your computer and name it "your-initials-case-study-2022"
+
+2. Create subfolders within your project folder called: `admin`, `raw-data`, `scripts`, `data`, `outputs`
+
+3. Create a new R Project in Rstudio from this folder (**File > New Project > Existing Directory**)
+
+4. Go to [https://github.com/karissawhiting/qsure-case-study](https://github.com/karissawhiting/qsure-case-study) and click **Code > Download ZIP**
+
+5. Create a `README.md` using `usethis::use_readme_md()`
+
+6. Drag contents of `raw-data` and `scripts` from  qsure-case-study-2022 to your new Project. 
+
+
+
+# Thank You!
+
+
+
+# Resources
+
+- These materials will available on Github
+- Data wrangling cheat sheet: [https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+- Questions? Reach out on teams or via email
+- Create an R help channel on teams- help each other!
+
+
+
+
+# Bonus Slides: Why Write a Function? 
+
+- D.R.Y. - limit copy pasting and potential mistakes 
+
+- Automate common tasks 
+
+- You only need to update code in one place 
+
+
+- If you are copy pasting code > 3 times, write a function
+
+- Give your function a useful name 
+
+
+
+# Bonus Slides: Function Example 
+
+```{r }
+add_one <- function(number) {
+  result = number + 1 
+  return(result)
+}
+
+add_one(7)
+#add_one("hai")
+```
+
+
+# Bonus Slides: Function Practice
+
+Write a function to calculate BMI given height (inchs) and weight (lbs) 
+
+BMI = (weight * 703) / (height)^2 
+
+```{r }
+#| eval: false
+calc_bmi <- function() {
+  ?????????????
+}
+
+```
+
+
+
+
+
