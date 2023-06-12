@@ -1,5 +1,5 @@
 
-# QSURE R Training 2023 <br> R Basics {background-color="#007CBA" style="text-align: center;"}
+# UPDATE QSURE R Training 2023 <br> R Basics {background-color="#007CBA" style="text-align: center;"}
 
 
 Karissa Whiting
