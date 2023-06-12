@@ -1,0 +1,18 @@
+---
+format: 
+  revealjs: 
+    theme:  [default, style.scss]
+    transition: fade
+    slide-number: false
+    pdf-separate-fragments: true
+execute:
+  echo: true 
+  output: asis
+  cache: true
+editor: source
+---
+
+
+{{< include r-basics.qmd >}}
+
+{{< include r-reproducibility.qmd >}}
