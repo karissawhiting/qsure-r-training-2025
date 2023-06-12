@@ -10,6 +10,6 @@
 
 ## Links
 
-Slides for both lessons available here: http://www.karissawhiting.com/qsure-r-training-2023/#/qsure-r-training-2023-r-basics
+- Slides for both lessons available here: http://www.karissawhiting.com/qsure-r-training-2023/#/qsure-r-training-2023-r-basics
 
-Link to Diabetes Case Study: https://github.com/karissawhiting/qsure-case-study 
+- Link to Diabetes Case Study: https://github.com/karissawhiting/qsure-case-study 
