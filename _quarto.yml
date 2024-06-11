@@ -4,3 +4,4 @@ project:
 
 execute:
   freeze: auto
+  error: true

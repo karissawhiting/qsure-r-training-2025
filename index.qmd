@@ -1,7 +1,7 @@
 ---
 format: 
   revealjs: 
-    theme:  [default, style.scss]
+    theme:  [style.scss, default]
     transition: fade
     slide-number: false
     pdf-separate-fragments: true
@@ -9,6 +9,7 @@ execute:
   echo: true 
   output: asis
   cache: false
+  error: true
 editor: source
 ---
 

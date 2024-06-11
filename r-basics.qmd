@@ -4,7 +4,7 @@
 
 Karissa Whiting
 
-June 7th, 2023
+June 6th, 2024
 
 
 <p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
@@ -77,33 +77,22 @@ Fill potential gaps in your R knowledge and help you get properly set up to cond
 
 # Training Agenda
 
-- **Lesson 1** – 6/7/2023
+- **Lesson 1** – 6/6/2024
     - R Basics (Quick Review)
-- **Lesson 2** - 6/8/2023
+- **Lesson 2** - 6/10/2024
     - Guided Example
         - Project Setup & Reproducibility 
         - Data Cleaning
         - Analyzing/Modeling the Data
         - Reporting Your Results
-- **Lesson 3** - TBD
+- **Lesson 3** - TBD?
     - Github?
     - Intro to Package Development?
 
 
-# Introductions
-
-1. Name, Preferred pronouns
-
-2. Have you used R before? If so, how long (< 1 year, 1-3 years, > 3 years)?
-
-3. Are you familiar with tidyverse?
-
-4. What are you working on (you may not know yet!) ?
-
-
 # R, Rstudio, Open source philosophy
 
-- **R** is an object-oriented **open-source** programming language used mostly for statistical computing and graphics
+- **R** is an object-oriented **open-source** programming language used mostly for statistical computing and graphics. Despite being OOO, R can be written in a functional style. 
 
 - **Open source** means the original source code is freely available, and can be distributed and modified. Also, users can contribute to the usefulness by creating packages, which implement specialized functions for all kinds of uses (e.g. statistical methods, graphical capabilities, reporting tools). 
 Added Bonus: vibrant R community!
@@ -127,7 +116,7 @@ v1 <- c(1, 2, 3)
 v1
 ```
 
-- The `%>%` (pipe) from the magrittr package is a useful way to link functions together to make your code more succinct and easier to read
+- The `%>%` (pipe) from the magrittr package is a useful way to link functions together to make your code more succinct and easier to read. `|>` is also a pipe. 
 
 ```{r }
 #| eval: false
@@ -156,6 +145,16 @@ R basic data types:
 * factor ("a")
 * complex (nobody ever uses these really)
 
+# R Basics: Beware Data Type Coercion
+
+What is the most flexible data type?
+
+```{r }
+#| echo: true
+x <- c("apple", 3)
+
+
+```
 
 # R Basics: Beware Data Type Coercion
 
@@ -179,7 +178,7 @@ y
 
 ```{r }
 #| echo: true
-#sum(y)
+sum(y)
 
 ```
 
@@ -386,7 +385,7 @@ nrow(iris)
 colnames(iris)
 
 class(iris)
-head(iris[,1:3], 3)
+head(iris, 3)
 table(iris$Species)
 
 ```
@@ -496,13 +495,15 @@ We will cover:
 
 - survival analyses 
 
+- and more....(depending on your survey results)
+
 
 # General modeling formula 
 
 - in general `~` is used to separate your outcome on the left hand side and your predictors on the right hand side
 - your outcome will always be on the left side of the `~`
 - only some univariate tests like `chisq.test()` do not use the `~` notation 
-- general  notation: model(outcome ~ covariates, data)
+- general  notation: `model(outcome ~ covariates, data)`
 
 - the `stats` package is already loaded in R which will make it easier to use common statistical tests
 
@@ -538,6 +539,9 @@ summary(mod1)
 
 # Check model diagnositcs
 
+- All models have different underlying assumptions (e.g. normality of residuals). Consider these when choosing a model and check them when model fitting. 
+- Check multicollinearity among your variables and how your models handles it:
+
 ```{r }
 #| message: false
 
@@ -548,7 +552,7 @@ library(car)
 #vifmod <- car::vif(mod1) #will not work with interaction present
 ```
 
-Compute a cutoff point for Cook's Distance, which is a measure of how influential a data point is in a regression analysis
+- Check outliers and influential points (e.g. Cook's Distance- a measure of how influential a data point is in a regression analysis). 
 
 ```{r }
 
@@ -558,7 +562,7 @@ cutoff <- 4/((nrow(mtcars)-length(mod1$coefficients)-2))
 
 ```
 
-If the Cook's Distance of a data point exceeds this cutoff, that data point might be considered unusually influential
+(If the Cook's Distance of a data point exceeds this cutoff, that data point might be considered unusually influential)
 
 # Check model diagnositcs
 
@@ -675,7 +679,8 @@ tbl_regression(mod2, exponentiate = TRUE) %>%
 
 - Outcome is both time and an event (e.g death, progression)
 - Have to specify both in model  
-- Former MSK employee Emily Zabor put together great materials for survival analysis here: https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html
+- Former MSK employee Emily Zabor put together great materials for survival analysis here: 
+    - [https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html](https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html)
 
 
 
@@ -705,19 +710,7 @@ tbl_regression(mod3, exponentiate = TRUE)
 ```
 
 
-# Survival analysis
-
-
-```{r }
-
-mod4
-
-```
-
-
-
-
-# Survival analysis
+# Survival analysis: Model Assumptions
 
 - test proportional hazards
 
