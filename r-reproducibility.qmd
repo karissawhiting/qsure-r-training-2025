@@ -1,5 +1,5 @@
 
-# R Training 2023{background-color="#007CBA" style="text-align: center;"}
+# R Training 2024 {background-color="#007CBA" style="text-align: center;"}
 
 [Computational Reproducibility]{.larger}
 

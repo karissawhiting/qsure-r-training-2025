@@ -3,5 +3,4 @@ project:
   output-dir: docs
 
 execute:
-  freeze: auto
   error: true
