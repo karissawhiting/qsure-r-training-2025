@@ -16,4 +16,3 @@ engine: knitr
 
 {{< include r-basics.qmd >}}
 
-#{{< include r-reproducibility.qmd >}}
