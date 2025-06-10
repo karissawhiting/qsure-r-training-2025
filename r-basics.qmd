@@ -897,13 +897,9 @@ cox.zph(mod3)
 ```
 
 
-# Tomorrow: Coding Exercise 
+# Thursday: Coding Exercise 
 
-- Case Study: Diabetes Risk Factors
-
-- Github Repo With Case Study: [https://github.com/karissawhiting/qsure-case-study](https://github.com/karissawhiting/qsure-case-study)
-
-- Check out script > `01_clean_data.R`
+- Coding Case Study: Diabetes Risk Factors
 
 # Thank You!
 
