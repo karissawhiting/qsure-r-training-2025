@@ -1,19 +1,19 @@
 ---
-format: 
+format:
   revealjs: 
     theme:  [style.scss, default]
     transition: fade
     slide-number: false
     pdf-separate-fragments: true
 execute:
+  error: false
+  warning: false
   echo: true 
-  output: asis
-  cache: false
-  error: true
-editor: source
+  results: asis
+engine: knitr
 ---
 
 
 {{< include r-basics.qmd >}}
 
-{{< include r-reproducibility.qmd >}}
+#{{< include r-reproducibility.qmd >}}

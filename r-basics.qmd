@@ -1,10 +1,17 @@
+---
+title: "&nbsp;"
+engine: knitr
+filters:
+  - webr
+---
+# QSURE Coding Workshop 2025{background-color="#007CBA" style="text-align: center;"}
 
-# QSURE R Training 2024 <br> R Basics {background-color="#007CBA" style="text-align: center;"}
+[Part 1: R Basics]{.larger}
 
+<br> 
 
-Karissa Whiting
-
-June 6th, 2024
+Karissa Whiting <br>
+June 10th, 2025
 
 
 <p align="center"><img src="images/core_hex_stickers.png"width=20%></p>
@@ -21,73 +28,66 @@ knitr::opts_chunk$set(echo = TRUE, results = 'asis')
 
 library(tidyverse)
 library(gtsummary)
-#library(synapser)
 library(genieBPC)
 library(gt)
 library(gnomeR)
 
-# let's check if reg gt tables work now. if so, ditch this
-knit_print.gtsummary <- function(x, ...) {
-   gtsummary::as_gt(x) |>
-     gt::as_raw_html()
-}
 
-knit_print.gt_tbl <- function(x, ...) {
-  gt::as_raw_html(x)
-} 
-
-
-knit_print.data.frame <- function(x, ...) {
-  x %>% gt::gt() %>%
-    gt::as_raw_html()
-}
-
-knit_print.tbl_df <- function(x, ...) {
-    x %>% gt::gt() %>%
-    gt::as_raw_html()
-} 
-
-
-registerS3method("knit_print", "gtsummary", knit_print.gtsummary)
-registerS3method("knit_print", "gt_tbl", knit_print.gt_tbl)
-registerS3method("knit_print", "data.frame", knit_print.data.frame)
-registerS3method("knit_print", "tbl_df", knit_print.tbl_df)
-
-#devtools::install_github("MSKCC-Epi-Bio/gnomeR")
-# fill for font awesome icons
-fa_fill <- "#606060"
 
 ```
 
 
-# R Workshop Goal
+# Purpose of Coding Workshop
+
+Provide you tools & resources to get properly set up to conduct impactful and reproducible research during your time at MSK (and after!)
+
+<br>
+
+- **Beginners:** Introduce you to general coding concepts and basics of the R programming language 
+
+- **Intermediate/Advanced Coders:** Fill potential gaps in your R knowledge and introduce packages useful for common statistical analyses and reporting.
+
+- **All:** Learn to build reproducible code bases (of any language) from the ground up. 
 
 
-Fill potential gaps in your R knowledge and help you get properly set up to conduct impactful and reproducible research during your time at MSK (and after!)
+::: {.notes}
+
+- While other seminars are likely more lecture style, these workshops are meant to be a hand-on intro to coding for statistical analysis projects. 
+
+...
+
+- All/reproducible- project organizaiton, file managements, ersion control, documentations, etc. 
 
 
-- Short review on basic R vocab 
-- Skip dplyr basics but include some advanced dplyr/data cleaning 
-- Focus on project setup
-- Focus on coding statistical analyses
-- Optional 3rd session on R package making/Github
+:::
 
 
 
+# Workshop Agenda
 
-# Training Agenda
-
-- **Lesson 1** – 6/6/2024
+- **Lesson 1** – 6/10/2024
+    - Overview of Coding Concepts
     - R Basics (Quick Review)
-- **Lesson 2** - 6/10/2024
+- **Lesson 2** - 6/12/2024
     - Guided Example
         - Project Setup & Reproducibility 
         - Data Cleaning
         - Analyzing/Modeling the Data
         - Reporting Your Results
-- **Lesson 3** - TBD?
-    - Github?
-    - Intro to Package Development?
+- **Lesson 3** - TBD
+
+::: {.notes}
+
+- Short review on basic R vocab 
+
+- Skip dplyr basics but include some advanced dplyr/data cleaning 
+
+- Interactive Code-along. Focus on project setup, statistical analyses
+
+- Optional 3rd session on R package making/Github
+
+:::
+
 
 
 # R, Rstudio, Open source philosophy
@@ -106,21 +106,82 @@ Added Bonus: vibrant R community!
 </center>
 
 
+# Python
 
-# R Basics: General Things
+- **Python** is a versatile programming language used widely in data science, web development, automation, and statistics. Unlike R, it was created as a general purpose language but has evolved significantly. 
+
+- Python is also **Open source** (PyPI - Python Package Index)
+
+- Some popular IDEs include **VS Code**, **JupyterLab**, **Positron** and more
+
+
+
+# R vs. Python
+
+[Which is better?]{.larger}
+
+<center>
+<img src="images/rvspy.gif" width="100%"/>
+</center>
+
+# R vs. Python
+
+[They're both great!]{.larger}
+
+<center>
+<img src="images/randpy.png" width="100%"/>
+</center>
+
+::: {.notes}
+
+- R has a longer history as a statistical language versus a general programming language, so it's useful as a statistician to learn some R as some more niche methods may not be available in Python
+
+:::
+ 
+# R Basics {background-color="#007CBA" style="text-align: center;"}
+
+
+::: {.notes}
+
+- Please open Rstudio, and start a new R file 
+
+:::
+ 
+# General Things
 
 - `<-` is the assignment operator (`=` also works)
 
-```{r }
+```{webr-r}
 v1 <- c(1, 2, 3)
 v1
 ```
 
-- The `%>%` (pipe) from the magrittr package is a useful way to link functions together to make your code more succinct and easier to read. `|>` is also a pipe. 
+- R is case sensitive, bE cArEfUl!
 
-```{r }
+```{webr-r}
+x <- "Apple"
+y <- "apple"
+x == y
+```
+
+- `?` is your friend if you want to look at documentation! (e.g. type `?mean()` in the console)
+
+```{webr-r}
+?mean
+```
+
+
+# A Note About The Pipe Operator
+
+- The `%>%` (pipe) is a useful way to link functions together to make your code more succinct and easier to read.
+
+- `|>` (base pipe) is another way to pipe operations 
+
+```{webr-r}
 #| eval: false
 library(dplyr)
+
+1:5 |> sum()
 
 mtcars %>% 
     select(mpg) %>% 
@@ -128,13 +189,8 @@ mtcars %>%
 
 ```
 
-- `?` is your friend if you want to look at documentation! (e.g. type `?mean()` in the console)
 
-- R is case sensitive, bE cArEfUl!
-
-
-
-# R Basics: Data Structures and Basic Syntax
+# Data Types
 
 R basic data types: 
 
@@ -145,46 +201,41 @@ R basic data types:
 * factor ("a")
 * complex (nobody ever uses these really)
 
-# R Basics: Beware Data Type Coercion
+# Beware Data Type Coercion
 
 What is the most flexible data type?
 
-```{r }
+```{webr-r}
 #| echo: true
 x <- c("apple", 3)
 
 
 ```
 
-# R Basics: Beware Data Type Coercion
+# Beware Data Type Coercion
 
 - Since columns of a data.frame must be of the same type, some data may be coerced in unexpected ways when reading in a csv or excel file. 
 
 - character is often the default for mixed data types
 
-```{r }
-#| echo: true
-x <- c("apple", 3)
-str(x)
 
-```
-
-```{r }
+```{webr-r}
 #| echo: true
 #| 
 y <- c(3, 2, "twenty") 
 y
 ```
 
-```{r }
+```{webr-r}
 #| echo: true
+#| error: true
 sum(y)
 
 ```
 
 
 
-# R Basics: Data Structures and Basic Syntax
+# How Data is Stored 
 
 R has 5 basic data structures: 
 
@@ -194,8 +245,8 @@ R has 5 basic data structures:
 
 1. vector
 2. matrix
-3. list
-4. array
+3. array
+4. list
 5. data.frame/tibble
 
 ::: 
@@ -207,7 +258,7 @@ R has 5 basic data structures:
 
 ::::
 
-# R Basics: Data Structures and Basic Syntax
+# How Data is Stored
 
 ::: {.columns}
 
@@ -234,7 +285,7 @@ c(1:15)
 
 :::
 
-# R Basics: Data Structures and Basic Syntax
+# How Data is Stored
 
 :::: {.columns}
 
@@ -264,39 +315,7 @@ matrix(letters, nrow=2, ncol=3)
 
 
 
-# R Basics: Data Structures and Basic Syntax
-
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-1. vector
-2. matrix
-3. **list**
-
-:::
-
-::: {.column width="50%"}
-
-
-- any data type allowed
-
-```{r }
-#| results: markup
-#| 
-my_list <- list("a", 2, TRUE) 
-str(my_list)
-```
-
-:::
-
-::::
-
-
-
-
-# R Basics: Data Structures and Basic Syntax
+# How Data is Stored
 
 :::: {.columns}
 
@@ -304,8 +323,7 @@ str(my_list)
 
 1. vector
 2. matrix
-3. list
-4. **array**
+3. **array**
 
 :::
 
@@ -330,7 +348,8 @@ array(c(vector1,vector2),dim = c(3,3,2))
 
 
 
-# R Basics: Data Structures and Basic Syntax
+# How Data is Stored 
+
 
 :::: {.columns}
 
@@ -338,8 +357,39 @@ array(c(vector1,vector2),dim = c(3,3,2))
 
 1. vector
 2. matrix
-3. list
-4. array
+3. array
+4. **list**
+
+:::
+
+::: {.column width="50%"}
+
+
+- any data type allowed
+
+```{r }
+#| results: markup
+#| 
+my_list <- list("a", 2, TRUE) 
+str(my_list)
+```
+
+:::
+
+::::
+
+
+
+# How Data is Stored
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+1. vector
+2. matrix
+3. array
+4. list
 5. **data.frame/tibble**
 
 :::
@@ -351,6 +401,7 @@ array(c(vector1,vector2),dim = c(3,3,2))
     - the most important for data analysts. Most similar to an excel spreadsheet/statistical data file
 
 ```{r }
+#| results: markup
 
 head(iris, 4)
 ```
@@ -360,9 +411,152 @@ head(iris, 4)
 ::::
 
 
+# The R Analysis Workflow {background-color="#007CBA" style="text-align: center;"}
 
-# Exploring Your Data: Identify Data Types
 
+# The Analysis Workflow
+
+[Steps of a basic data analysis project:]{.larger}
+
+::: {.incremental .larger}
+
+[1. Setup Your Project]{.emphasized}
+
+[2. Clean and Explore Data]{.emphasized}
+    
+[3. Analyze Data]{.emphasized}
+    
+[4. Report Your Findings]{.emphasized}
+ 
+[5. Iterate, Share, and Collaborate!]{.emphasized}
+
+:::
+    
+# Analysis Workflow Tools (R)
+
+[1. Setup Your Project]{.emphasized}
+
+    - `here`, `renv`
+
+[2. Clean and Explore Data]{.emphasized}
+
+    - `tidyverse`
+  
+[3. Analyze Data]{.emphasized}
+
+    - `stats`
+    - `survival`, `lme4`, `glmnet`
+    - `ggplot2` 
+    
+[4. Report Your Findings]{.emphasized}
+
+    - R Markdown / Quarto
+    - `gt` / `gtsummary`
+    
+[5. Iterate, Share, and Collaborate!]{.emphasized}
+
+    - git / GitHub
+    
+
+# Analysis Workflow Tools (Python)
+
+[1. Setup Your Project]{.emphasized}
+  
+    - `venv`, `conda`
+    
+[2. Clean and Explore Data]{.emphasized}
+
+    - `pandas` / `numpy`
+
+[3. Analyze Data]{.emphasized}
+
+    - `scipy.stats`, `statsmodels`, `scikit-learn`
+    - `seaborn`, `matplotlib`
+
+[4. Report Your Findings]{.emphasized}
+
+    - Jupyter / Quarto
+
+[5. Iterate, Share, and Collaborate!]{.emphasized}
+
+    - git / GitHub
+
+
+# The Analysis Workflow
+
+[Steps of a basic data analysis project:]{.larger}
+
+
+[1. Setup Your Project]{.emphasized}
+
+2. Clean and Explore Data
+    
+3. Analyze Data
+    
+4. Report Your Findings
+ 
+5. Iterate, Share, and Collaborate!
+
+
+
+# Anatomy of a Project
+
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+<p align="center"><img src="images/project-folders.png"width=100%></p>
+
+:::
+
+
+::: {.column width="60%"}
+
+- keep raw and processed data separate (`raw-data`, vs. `data`)
+
+- folder for `scripts` ordered or labelled descriptively
+- optionally can have `admin` for project notes, etc  and `outputs` for final reports and figures 
+
+- **README** - text file that introduces and explains a project (`usethis::use_readme_md()`)
+- **R Project (.Rproj file) ** - tells RStudio all your files belong to one project and sets working directory for entire project. 
+
+:::
+
+::::
+
+
+# Your Turn: Setup Your Project
+
+
+1. Create a new folder on your computer and name it "your-initials-case-study-2025"
+
+2. Create subfolders within your project folder called: `admin`, `raw-data`, `scripts`, `data`, `outputs`
+
+3. Create a new R Project in Rstudio from this folder (**File > New Project > Existing Directory**)
+
+4. Create a `README.md` using `usethis::use_readme_md()`
+
+5. Open a new R file (**RStudio > New File > R Script**) to use as a scratch file
+
+# The Analysis Workflow
+
+<br>
+
+[Steps of a basic data analysis project:]{.larger}
+
+1. Setup Your Project
+
+[2. Clean and Explore Data]{.emphasized}
+    
+3. Analyze Data
+    
+4. Report Your Findings
+ 
+5. Iterate, Share, and Collaborate!
+
+
+# Exploring Your Data
 
 - `colnames()` - will give you the column names
 - `ncol()` and `nrow()` - will give you the total count of columns and rows respectively
@@ -371,19 +565,19 @@ head(iris, 4)
 - `View()` will show the whole dataframe 
 - `table()` will summarise variables
 
-```{r }
+```{webr-r}
+
 str(iris)
 nrow(iris)
 ```
 
 
 
-# Exploring Your Data: Identify Data Types cont.
+# Exploring Your Data
 
-```{r }
+```{webr-r}
 
 colnames(iris)
-
 class(iris)
 head(iris, 3)
 table(iris$Species)
@@ -391,8 +585,7 @@ table(iris$Species)
 ```
 
 
-
-# Intro to tidyverse
+# Cleaning Data: Intro to tidyverse
 
 The tidyverse package is a collection of R packages designed for data analysis, all of which share a similar design, grammar, and structure.
 
@@ -407,48 +600,33 @@ tidyverse_logo()
 ```
 
 
-# Intro to tidyverse
+# Cleaning Data: Intro to tidyverse
 
-- readr: data import/export
-- tibble: easier to work with data frames
-- dplyr: data manipulation
-- tidyr: data manipulation
-- ggplot2: graphics and visualization
-- purrr: functional programming toolkit, replaces the need for many loops
-- stringr: string manipulation
-- forcats: re-imagined factor data types
+- **readr**: data import/export
+- **tibble**: easier to work with data frames
+- **dplyr**: data manipulation
+- **tidyr**: data manipulation
+- **ggplot2**: graphics and visualization
+- **purrr**: functional programming toolkit, replaces the need for many loops
+- **stringr**: string manipulation
+- **forcats**: re-imagined factor data types
 
 There are several additional packages which are installed as part of the tidyverse, but are not loaded by default.
 
 
 
-# Intro to tidyverse
+# The tidyverse style
 
-Overall tidyverse helps with code readability and has shortcuts for some common data manipulation tasks
+- Overall the tidyverse style emphasizes code readability and intuitive coding 
 
-tidyverse has been developed and significantly improved in the last few years, with a lot of ongoing work being done to further increase usability.
+- Human-readable syntax and pipe-based workflows
+
+- Shortcuts for common data manipulation tasks
+
+- tidyverse has been developed and significantly improved in the last few years, with a lot of ongoing work being done to further increase usability.
 
 
-# The R Analysis Workflow
-
-- Setup Your Project
-
-- Clean and Explore Data
-    - `tidyverse`
-    
-- Analyze it
-    - `stats`
-    - `survival`, `lme4`, `nlme`
-    - `ggplot2` 
-    
-- Report Your Findings
-    - R Markdown / quarto
-    - `gt` / `gtsummary`
-    
-- Iterate, Share, and Collaborate!
-    - `git`/ `github`
-
-# Clean and Explore Data
+# Cleaning Data: dplyr
 
 The dplyr package is a data manipulation and cleaning package. A few of the key functions (verbs) in dplyr are:
 
@@ -461,30 +639,24 @@ The dplyr package is a data manipulation and cleaning package. A few of the key 
 
 All take a data frame as input, and return a data frame as output.
 
-**We will briefly review   during case study**
+**We will briefly review during case study**
 
+# The Analysis Workflow
 
-# The R Analysis Workflow
+[Steps of a basic data analysis project:]{.larger}
 
-- Setup Your Project
+1. Setup Your Project
 
-- Clean and Explore Data
-    - `tidyverse`
+2. Clean and Explore Data
     
-- Analyze it
-    - `stats`
-    - `survival`, `lme4`, `nlme`
-    - `ggplot2` 
+[3. Analyze Data]{.emphasized}
     
-- Report Your Findings
-    - R Markdown / quarto
-    - `gt` / `gtsummary`
-    
-- Iterate, Share, and Collaborate!
-    - `git`/ `github`
+4. Report Your Findings
+ 
+5. Iterate, Share, and Collaborate!
 
 
-# Model Statistical analyses 
+# Statistical Models
 
 
 We will cover:
@@ -495,17 +667,17 @@ We will cover:
 
 - survival analyses 
 
-- and more....(depending on your survey results)
+- and more....(depending on what's useful for you!)
 
 
-# General modeling formula 
+# Formula Syntax 
 
-- in general `~` is used to separate your outcome on the left hand side and your predictors on the right hand side
-- your outcome will always be on the left side of the `~`
-- only some univariate tests like `chisq.test()` do not use the `~` notation 
-- general  notation: `model(outcome ~ covariates, data)`
-
-- the `stats` package is already loaded in R which will make it easier to use common statistical tests
+- Code for models and stats tests often require formula syntax
+- In general `~` is used to separate your outcome on the left hand side and your predictors on the right hand side
+- Your outcome will always be on the left side of the `~`
+- Only some univariate tests like `chisq.test()` do not use the `~` notation 
+- The `stats` package is already loaded in R which will make it easier to use common statistical tests
+- General notation: `model(outcome ~ covariates, data)`
 
 
 # Example of linear model
@@ -537,24 +709,25 @@ summary(mod1)
 ```
 
 
-# Check model diagnositcs
+# Check Model Diagnostics
 
 - All models have different underlying assumptions (e.g. normality of residuals). Consider these when choosing a model and check them when model fitting. 
 - Check multicollinearity among your variables and how your models handles it:
 
-```{r }
+```{webr-r}
 #| message: false
 
-library(car)
-#model diagnositics
+mod1 <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
 
-#multi colinearity
-#vifmod <- car::vif(mod1) #will not work with interaction present
+vifmod <- car::vif(mod1) #will not work with interaction present
+vifmod
 ```
+
+# Check Model Diagnostics
 
 - Check outliers and influential points (e.g. Cook's Distance- a measure of how influential a data point is in a regression analysis). 
 
-```{r }
+```{webr-r}
 
 #influencers 
 cutoff <- 4/((nrow(mtcars)-length(mod1$coefficients)-2)) 
@@ -587,7 +760,7 @@ summary(mod1)
 
 
 
-# Example cont. 
+# Report Your Findings
 
 
 - `broom` and `gt`/`gtsummary` will help
@@ -628,10 +801,11 @@ tbl_regression(mod1)
 library(labelled)
 
 var_label(mtcars$cyl) <- "Cylinder"
+
 newmodsum <- lm(mpg ~ vs * cyl, data = mtcars) %>% 
-tbl_regression() %>% 
-    bold_labels() %>% 
-    modify_caption("New title for model")
+  tbl_regression() %>% 
+      bold_labels() %>% 
+      modify_caption("New title for model")
 
 
 ```
@@ -678,10 +852,11 @@ tbl_regression(mod2, exponentiate = TRUE) %>%
 # Survival analysis
 
 - Outcome is both time and an event (e.g death, progression)
-- Have to specify both in model  
-- Former MSK employee Emily Zabor put together great materials for survival analysis here: 
+- Have to specify both in the left side of model formula
+- Dr. Emily Zabor put together great materials for survival analysis here: 
     - [https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html](https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html)
 
+<p align="center"><img src="images/surv.png"width=50%></p>
 
 
 # Survival analysis
