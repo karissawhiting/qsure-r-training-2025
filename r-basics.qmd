@@ -92,7 +92,7 @@ Provide you tools & resources to get properly set up to conduct impactful and re
 
 # R, Rstudio, Open source philosophy
 
-- **R** is an object-oriented **open-source** programming language used mostly for statistical computing and graphics. Despite being OOO, R can be written in a functional style. 
+- **R** is an **open-source** programming language used mostly for statistical computing and graphics. R is an object-oriented language, with a functional style.
 
 - **Open source** means the original source code is freely available, and can be distributed and modified. Also, users can contribute to the usefulness by creating packages, which implement specialized functions for all kinds of uses (e.g. statistical methods, graphical capabilities, reporting tools). 
 Added Bonus: vibrant R community!
@@ -216,7 +216,7 @@ x <- c("apple", 3)
 
 - Since columns of a data.frame must be of the same type, some data may be coerced in unexpected ways when reading in a csv or excel file. 
 
-- character is often the default for mixed data types
+- Character type is often the default for mixed data types
 
 
 ```{webr-r}
@@ -225,6 +225,8 @@ x <- c("apple", 3)
 y <- c(3, 2, "twenty") 
 y
 ```
+
+What will happen when we try to add these?
 
 ```{webr-r}
 #| echo: true
@@ -264,7 +266,7 @@ R has 5 basic data structures:
 
 ::: {.column width="50%"}
 
-1. vector
+[1. vector]{.emphasized}
 
 :::
 
@@ -292,7 +294,8 @@ c(1:15)
 ::: {.column width="50%"}
 
 1. vector
-2. **matrix**
+
+[2. matrix]{.emphasized}
 
 :::
 
@@ -323,7 +326,8 @@ matrix(letters, nrow=2, ncol=3)
 
 1. vector
 2. matrix
-3. **array**
+
+[3. array]{.emphasized}
 
 :::
 
@@ -358,14 +362,16 @@ array(c(vector1,vector2),dim = c(3,3,2))
 1. vector
 2. matrix
 3. array
-4. **list**
+
+[4. list]{.emphasized}
 
 :::
 
 ::: {.column width="50%"}
 
 
-- any data type allowed
+- Any data type allowed
+- Most flexible (often used for output of functions)
 
 ```{r }
 #| results: markup
@@ -390,15 +396,16 @@ str(my_list)
 2. matrix
 3. array
 4. list
-5. **data.frame/tibble**
+
+[5. data.frame/tibble]{.emphasized}
 
 :::
 
 
 ::: {.column width="50%"}
 
-    - any data type is allowed, but each column has to have the same type
-    - the most important for data analysts. Most similar to an excel spreadsheet/statistical data file
+    - Any data type is allowed, BUT each column has to have the SAME type
+    - Most important for data analysts. Most similar to an excel spreadsheet/statistical data file
 
 ```{r }
 #| results: markup
@@ -417,6 +424,8 @@ head(iris, 4)
 # The Analysis Workflow
 
 [Steps of a basic data analysis project:]{.larger}
+
+<br>
 
 ::: {.incremental .larger}
 
@@ -486,6 +495,7 @@ head(iris, 4)
 
 [Steps of a basic data analysis project:]{.larger}
 
+<br> 
 
 [1. Setup Your Project]{.emphasized}
 
@@ -575,6 +585,8 @@ nrow(iris)
 
 # Exploring Your Data
 
+Try these out:
+
 ```{webr-r}
 
 colnames(iris)
@@ -587,7 +599,7 @@ table(iris$Species)
 
 # Cleaning Data: Intro to tidyverse
 
-The tidyverse package is a collection of R packages designed for data analysis, all of which share a similar design, grammar, and structure.
+The tidyverse package is a **collection of R packages** designed for data analysis, all of which share a similar design, grammar, and structure.
 
 ```{r }
 #| results: markup
@@ -617,9 +629,9 @@ There are several additional packages which are installed as part of the tidyver
 
 # The tidyverse style
 
-- Overall the tidyverse style emphasizes code readability and intuitive coding 
+- Overall the tidyverse style emphasizes **code readability** and **intuitive coding**
 
-- Human-readable syntax and pipe-based workflows
+- Human-readable syntax and **pipe-based workflows**
 
 - Shortcuts for common data manipulation tasks
 
@@ -639,11 +651,12 @@ The dplyr package is a data manipulation and cleaning package. A few of the key 
 
 All take a data frame as input, and return a data frame as output.
 
-**We will briefly review during case study**
 
 # The Analysis Workflow
 
 [Steps of a basic data analysis project:]{.larger}
+
+<br>
 
 1. Setup Your Project
 
@@ -782,8 +795,11 @@ gt::gt(moddf)
 
 # gtsummary
 
-- `gtsummary` makes it easier to report model and descriptive statistics (more on this in the example)
-- For more helpful examples: https://www.danieldsjoberg.com/gtsummary/index.html 
+- The {gtsummary} package provides an elegant and flexible way to create publication-ready analytical and summary tables u
+- The {gtsummary} package summarizes data sets, regression models, and more, using sensible defaults with highly customizable capabilities.
+- For helpful examples [see package website](https://www.danieldsjoberg.com/gtsummary/index.html)
+
+<p align="center"><img src="images/gtsummary-hex.png"width=30%></p>
 
 
 # gtsummary
@@ -796,16 +812,20 @@ tbl_regression(mod1)
 
 # Customizing gtsummary
 
+There are tons of ways to customize your basic {gtsummary} outputs.
+
+Example of adding labels: 
+
 ```{r }
 
 library(labelled)
 
 var_label(mtcars$cyl) <- "Cylinder"
 
-newmodsum <- lm(mpg ~ vs * cyl, data = mtcars) %>% 
+mod_summary <- lm(mpg ~ vs * cyl, data = mtcars) %>%
   tbl_regression() %>% 
-      bold_labels() %>% 
-      modify_caption("New title for model")
+  bold_labels() %>% 
+  modify_caption("New title for model")
 
 
 ```
@@ -815,7 +835,7 @@ newmodsum <- lm(mpg ~ vs * cyl, data = mtcars) %>%
 
 ```{r }
 
-newmodsum
+mod_summary
 
 ```
 
@@ -823,7 +843,7 @@ newmodsum
 # Logistic models
 
 
-- binary outcome (0/1)
+- Binary outcome (0/1)
 - R will model the '1' as the event by default make sure your variable is coded correctly
 
 ```{r }
@@ -831,7 +851,6 @@ mtcars$vs <- as.numeric(mtcars$vs)
 mtcars$am <- as.character(mtcars$am)
 
 mod2 <- glm(vs ~ am , data = mtcars, family =  "binomial")
-
 
 
 ```
@@ -852,9 +871,8 @@ tbl_regression(mod2, exponentiate = TRUE) %>%
 # Survival analysis
 
 - Outcome is both time and an event (e.g death, progression)
-- Have to specify both in the left side of model formula
-- Dr. Emily Zabor put together great materials for survival analysis here: 
-    - [https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html](https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html)
+- Must specify both time and event outcome variables in the left side of model formula
+- Dr. Emily Zabor from Cleveland Clinic put together great materials for survival analysis: [Link to Materials](https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html)
 
 <p align="center"><img src="images/surv.png"width=50%></p>
 
@@ -887,7 +905,9 @@ tbl_regression(mod3, exponentiate = TRUE)
 
 # Survival analysis: Model Assumptions
 
-- test proportional hazards
+- Cox models assume proportional hazards
+
+- Test this assumptions:
 
 ```{r }
 #| results: markup
@@ -900,6 +920,8 @@ cox.zph(mod3)
 # Thursday: Coding Exercise 
 
 - Coding Case Study: Diabetes Risk Factors
+- Materials coming soon
+
 
 # Thank You!
 

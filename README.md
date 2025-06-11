@@ -4,12 +4,10 @@
 
 # Training Agenda
 
-- **Lesson 1**: R Basics
+- **Lesson 1**: Intro & Programming Basics
 
 - **Lesson 1**: Computational Reproducibility and Diabetes Case Study
 
 ## Links
 
-- Slides for both lessons available here: http://www.karissawhiting.com/qsure-r-training-2023/#/qsure-r-training-2023-r-basics
-
-- Link to Diabetes Case Study: https://github.com/karissawhiting/qsure-case-study 
+- [Slides](http://www.karissawhiting.com/qsure-r-training-2025/) for lesson 1

@@ -2062,7 +2062,7 @@ Registered S3 method overwritten by 'GGally':
 <section id="r-rstudio-open-source-philosophy" class="level1">
 <h1>R, Rstudio, Open source philosophy</h1>
 <ul>
-<li><p><strong>R</strong> is an object-oriented <strong>open-source</strong> programming language used mostly for statistical computing and graphics. Despite being OOO, R can be written in a functional style.</p></li>
+<li><p><strong>R</strong> is an <strong>open-source</strong> programming language used mostly for statistical computing and graphics. R is an object-oriented language, with a functional style.</p></li>
 <li><p><strong>Open source</strong> means the original source code is freely available, and can be distributed and modified. Also, users can contribute to the usefulness by creating packages, which implement specialized functions for all kinds of uses (e.g.&nbsp;statistical methods, graphical capabilities, reporting tools). Added Bonus: vibrant R community!</p></li>
 <li><p><strong>RStudio</strong> is an integrated development environment (IDE) for R. It includes a console, syntax-highlighting code editor that supports direct code execution, as well as tools for plotting, history, debugging and work space management.</p></li>
 </ul>
@@ -2157,10 +2157,11 @@ Registered S3 method overwritten by 'GGally':
 <h1>Beware Data Type Coercion</h1>
 <ul>
 <li><p>Since columns of a data.frame must be of the same type, some data may be coerced in unexpected ways when reading in a csv or excel file.</p></li>
-<li><p>character is often the default for mixed data types</p></li>
+<li><p>Character type is often the default for mixed data types</p></li>
 </ul>
 <div id="qwebr-insertion-location-6"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>What will happen when we try to add these?</p>
 <div id="qwebr-insertion-location-7"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
@@ -2185,9 +2186,7 @@ Registered S3 method overwritten by 'GGally':
 <h1>How Data is Stored</h1>
 <div class="columns">
 <div class="column" style="width:50%;">
-<ol type="1">
-<li>vector</li>
-</ol>
+<p><span class="emphasized">1. vector</span></p>
 </div><div class="column" style="width:50%;">
 <ul>
 <li>only 1 data type allowed</li>
@@ -2207,8 +2206,8 @@ Registered S3 method overwritten by 'GGally':
 <div class="column" style="width:50%;">
 <ol type="1">
 <li>vector</li>
-<li><strong>matrix</strong></li>
 </ol>
+<p><span class="emphasized">2. matrix</span></p>
 </div><div class="column" style="width:50%;">
 <p>2d, only 1 data type allowed</p>
 <div class="cell">
@@ -2230,8 +2229,8 @@ Registered S3 method overwritten by 'GGally':
 <ol type="1">
 <li>vector</li>
 <li>matrix</li>
-<li><strong>array</strong></li>
 </ol>
+<p><span class="emphasized">3. array</span></p>
 </div><div class="column" style="width:50%;">
 <ul>
 <li>n-dimensions, of 1 data type</li>
@@ -2269,11 +2268,12 @@ Registered S3 method overwritten by 'GGally':
 <li>vector</li>
 <li>matrix</li>
 <li>array</li>
-<li><strong>list</strong></li>
 </ol>
+<p><span class="emphasized">4. list</span></p>
 </div><div class="column" style="width:50%;">
 <ul>
-<li>any data type allowed</li>
+<li>Any data type allowed</li>
+<li>Most flexible (often used for output of functions)</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"a"</span>, <span class="dv">2</span>, <span class="cn">TRUE</span>) </span>
@@ -2297,11 +2297,11 @@ Registered S3 method overwritten by 'GGally':
 <li>matrix</li>
 <li>array</li>
 <li>list</li>
-<li><strong>data.frame/tibble</strong></li>
 </ol>
+<p><span class="emphasized">5. data.frame/tibble</span></p>
 </div><div class="column" style="width:50%;">
-<pre><code>- any data type is allowed, but each column has to have the same type
-- the most important for data analysts. Most similar to an excel spreadsheet/statistical data file</code></pre>
+<pre><code>- Any data type is allowed, BUT each column has to have the SAME type
+- Most important for data analysts. Most similar to an excel spreadsheet/statistical data file</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -2321,6 +2321,7 @@ Registered S3 method overwritten by 'GGally':
 <section id="the-analysis-workflow" class="level1">
 <h1>The Analysis Workflow</h1>
 <p><span class="larger">Steps of a basic data analysis project:</span></p>
+<p><br></p>
 <div class="incremental larger">
 <p><span class="emphasized">1. Setup Your Project</span></p>
 <p><span class="emphasized">2. Clean and Explore Data</span></p>
@@ -2362,6 +2363,7 @@ Registered S3 method overwritten by 'GGally':
 <section id="the-analysis-workflow-1" class="level1">
 <h1>The Analysis Workflow</h1>
 <p><span class="larger">Steps of a basic data analysis project:</span></p>
+<p><br></p>
 <p><span class="emphasized">1. Setup Your Project</span></p>
 <ol start="2" type="1">
 <li><p>Clean and Explore Data</p></li>
@@ -2427,12 +2429,13 @@ Registered S3 method overwritten by 'GGally':
 </section>
 <section id="exploring-your-data-1" class="level1">
 <h1>Exploring Your Data</h1>
+<p>Try these out:</p>
 <div id="qwebr-insertion-location-9"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="cleaning-data-intro-to-tidyverse" class="level1">
 <h1>Cleaning Data: Intro to tidyverse</h1>
-<p>The tidyverse package is a collection of R packages designed for data analysis, all of which share a similar design, grammar, and structure.</p>
+<p>The tidyverse package is a <strong>collection of R packages</strong> designed for data analysis, all of which share a similar design, grammar, and structure.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load it</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -2465,8 +2468,8 @@ Registered S3 method overwritten by 'GGally':
 <section id="the-tidyverse-style" class="level1">
 <h1>The tidyverse style</h1>
 <ul>
-<li><p>Overall the tidyverse style emphasizes code readability and intuitive coding</p></li>
-<li><p>Human-readable syntax and pipe-based workflows</p></li>
+<li><p>Overall the tidyverse style emphasizes <strong>code readability</strong> and <strong>intuitive coding</strong></p></li>
+<li><p>Human-readable syntax and <strong>pipe-based workflows</strong></p></li>
 <li><p>Shortcuts for common data manipulation tasks</p></li>
 <li><p>tidyverse has been developed and significantly improved in the last few years, with a lot of ongoing work being done to further increase usability.</p></li>
 </ul>
@@ -2483,11 +2486,11 @@ Registered S3 method overwritten by 'GGally':
 <li>summarize()</li>
 </ul>
 <p>All take a data frame as input, and return a data frame as output.</p>
-<p><strong>We will briefly review during case study</strong></p>
 </section>
 <section id="the-analysis-workflow-3" class="level1">
 <h1>The Analysis Workflow</h1>
 <p><span class="larger">Steps of a basic data analysis project:</span></p>
+<p><br></p>
 <ol type="1">
 <li><p>Setup Your Project</p></li>
 <li><p>Clean and Explore Data</p></li>
@@ -3139,9 +3142,13 @@ F-statistic: 18.82 on 4 and 27 DF,  p-value: 1.696e-07</code></pre>
 <section id="gtsummary" class="level1">
 <h1>gtsummary</h1>
 <ul>
-<li><code>gtsummary</code> makes it easier to report model and descriptive statistics (more on this in the example)</li>
-<li>For more helpful examples: https://www.danieldsjoberg.com/gtsummary/index.html</li>
+<li>The {gtsummary} package provides an elegant and flexible way to create publication-ready analytical and summary tables u</li>
+<li>The {gtsummary} package summarizes data sets, regression models, and more, using sensible defaults with highly customizable capabilities.</li>
+<li>For helpful examples <a href="https://www.danieldsjoberg.com/gtsummary/index.html">see package website</a></li>
 </ul>
+<p align="center">
+<img src="images/gtsummary-hex.png" width="30%">
+</p>
 </section>
 <section id="gtsummary-1" class="level1">
 <h1>gtsummary</h1>
@@ -3698,18 +3705,20 @@ F-statistic: 18.82 on 4 and 27 DF,  p-value: 1.696e-07</code></pre>
 </section>
 <section id="customizing-gtsummary" class="level1">
 <h1>Customizing gtsummary</h1>
+<p>There are tons of ways to customize your basic {gtsummary} outputs.</p>
+<p>Example of adding labels:</p>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labelled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>Warning: package 'labelled' was built under R version 4.2.3</code></pre>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var_label</span>(mtcars<span class="sc">$</span>cyl) <span class="ot">&lt;-</span> <span class="st">"Cylinder"</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>newmodsum <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> vs <span class="sc">*</span> cyl, <span class="at">data =</span> mtcars) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>mod_summary <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> vs <span class="sc">*</span> cyl, <span class="at">data =</span> mtcars) <span class="sc">%&gt;%</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">modify_caption</span>(<span class="st">"New title for model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_caption</span>(<span class="st">"New title for model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="customizing-gtsummary-1" class="level1">
 <h1>Customizing gtsummary</h1>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>newmodsum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>mod_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="akoxcuxjyl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#akoxcuxjyl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -4264,7 +4273,7 @@ F-statistic: 18.82 on 4 and 27 DF,  p-value: 1.696e-07</code></pre>
 <section id="logistic-models" class="level1">
 <h1>Logistic models</h1>
 <ul>
-<li>binary outcome (0/1)</li>
+<li>Binary outcome (0/1)</li>
 <li>R will model the ‘1’ as the event by default make sure your variable is coded correctly</li>
 </ul>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mtcars<span class="sc">$</span>vs)</span>
@@ -4778,11 +4787,8 @@ F-statistic: 18.82 on 4 and 27 DF,  p-value: 1.696e-07</code></pre>
 <h1>Survival analysis</h1>
 <ul>
 <li>Outcome is both time and an event (e.g death, progression)</li>
-<li>Have to specify both in the left side of model formula</li>
-<li>Dr.&nbsp;Emily Zabor put together great materials for survival analysis here:
-<ul>
-<li><a href="https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html">https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html</a></li>
-</ul></li>
+<li>Must specify both time and event outcome variables in the left side of model formula</li>
+<li>Dr.&nbsp;Emily Zabor from Cleveland Clinic put together great materials for survival analysis: <a href="https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html">Link to Materials</a></li>
 </ul>
 <p align="center">
 <img src="images/surv.png" width="50%">
@@ -5337,7 +5343,8 @@ F-statistic: 18.82 on 4 and 27 DF,  p-value: 1.696e-07</code></pre>
 <section id="survival-analysis-model-assumptions" class="level1">
 <h1>Survival analysis: Model Assumptions</h1>
 <ul>
-<li>test proportional hazards</li>
+<li><p>Cox models assume proportional hazards</p></li>
+<li><p>Test this assumptions:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(mod3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5353,6 +5360,7 @@ GLOBAL   7.83  4 0.098</code></pre>
 <h1>Thursday: Coding Exercise</h1>
 <ul>
 <li>Coding Case Study: Diabetes Risk Factors</li>
+<li>Materials coming soon</li>
 </ul>
 </section>
 <section id="thank-you" class="level1">
