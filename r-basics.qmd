@@ -65,10 +65,10 @@ Provide you tools & resources to get properly set up to conduct impactful and re
 
 # Workshop Agenda
 
-- **Lesson 1** – 6/10/2024
+- **Lesson 1** – 6/10/2025
     - Overview of Coding Concepts
     - R Basics (Quick Review)
-- **Lesson 2** - 6/12/2024
+- **Lesson 2** - 6/12/2025
     - Guided Example
         - Project Setup & Reproducibility 
         - Data Cleaning
